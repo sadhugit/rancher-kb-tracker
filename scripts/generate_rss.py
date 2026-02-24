@@ -2,11 +2,16 @@ import requests
 from feedgen.feed import FeedGenerator
 
 REPO = "sadhugit/rancher-kb-tracker"
-API_URL = f"https://api.github.com/repos/{REPO}/issues"
+TOKEN = os.getenv("GITHUB_TOKEN")
 
-response = requests.get(API_URL)
+headers = {}
+if TOKEN:
+    headers["Authorization"] = f"token {TOKEN}"
+
+API_URL = f"https://api.github.com/repos/{REPO}/issues?state=all&per_page=100"
+
+response = requests.get(API_URL, headers=headers)
 issues = response.json()
-
 fg = FeedGenerator()
 fg.title('Rancher KB Updates')
 fg.link(href='https://github.com/sadhugit/rancher-kb-tracker')
@@ -18,5 +23,6 @@ for issue in issues:
     fe.link(href=issue['html_url'])
     fe.description(issue['body'])
     fe.pubDate(issue['created_at'])
+    fe.guid(issue["html_url"])
 
 fg.rss_file('rss.xml')
