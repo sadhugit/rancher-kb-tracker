@@ -7,6 +7,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     steps:
     - uses: actions/checkout@v4
@@ -24,8 +26,8 @@ jobs:
 
     - name: Commit RSS
       run: |
-        git config user.name "github-actions"
-        git config user.email "actions@github.com"
+        git config user.name "Suresh Sadhu"
+        git config user.email "ranchersadhu@gmail.com"
         git add rss.xml
         git commit -m "Update RSS"
         git push
