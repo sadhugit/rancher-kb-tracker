@@ -27,6 +27,13 @@ for issue in issues:
     fe.link(href=issue['html_url'])
     fe.description(issue['body'] or "No description")
     fe.published(datetime.strptime(issue['created_at'], "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc))
+    # Entry level - use updated_at so edited/new issues surface in Slack
+    fe.updated(datetime.strptime(issue['updated_at'], "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc))
     fe.guid(issue["html_url"], permalink=True)
+    
+# Feed level - tells Slack the feed was recently updated
+fg.updated(datetime.now(timezone.utc))
+
+
 
 fg.rss_file('rss.xml')
