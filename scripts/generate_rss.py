@@ -1,5 +1,6 @@
 import requests
 from feedgen.feed import FeedGenerator
+import os
 
 REPO = "sadhugit/rancher-kb-tracker"
 TOKEN = os.getenv("GITHUB_TOKEN")
