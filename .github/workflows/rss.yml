@@ -1,33 +1,45 @@
 name: Generate RSS
 
 on:
+  workflow_dispatch:
   issues:
     types: [opened, edited, closed, labeled]
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     permissions:
       contents: write
 
     steps:
-    - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Setup Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: '3.x'
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
 
-    - name: Install Dependencies
-      run: pip install feedgen requests
+      - name: Install Dependencies
+        run: pip install feedgen requests PyGithub
 
-    - name: Generate RSS
-      run: python scripts/generate_rss.py
+      - name: Generate RSS
+        run: python scripts/generate_rss.py
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Commit RSS
-      run: |
-        git config user.name "Suresh Sadhu"
-        git config user.email "ranchersadhu@gmail.com"
-        git add rss.xml
-        git commit -m "Update RSS"
-        git push
+      - name: Commit RSS
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "actions@github.com"
+
+          git add rss.xml
+
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Update RSS"
+            git push
+          fi
