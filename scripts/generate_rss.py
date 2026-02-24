@@ -17,7 +17,10 @@ fg = FeedGenerator()
 fg.title('Rancher KB Updates')
 fg.link(href='https://github.com/sadhugit/rancher-kb-tracker')
 fg.description('Latest Rancher KB Articles')
-
+fg.atom_link(
+    href="https://sadhugit.github.io/rancher-kb-tracker/rss.xml",
+    rel="self",
+    type="application/rss+xml")
 for issue in issues:
     fe = fg.add_entry()
     fe.title(issue['title'])
