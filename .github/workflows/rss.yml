@@ -22,8 +22,10 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Install Dependencies
-        run: pip install feedgen requests PyGithub
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install feedgen --upgrade
 
       - name: Generate RSS
         run: python scripts/generate_rss.py
