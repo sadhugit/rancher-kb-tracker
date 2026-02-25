@@ -41,9 +41,16 @@ Deploy: The updated feed is committed back to the repository.
 🚀 **Getting Started**
 
 1. Subscribe to the Feed
-Copy the link to the generated rss.xml file and paste it into your RSS reader:
+- Copy the link to the generated rss.xml file and paste it into your RSS reader:
+
 ```https://sadhugit.github.io/rancher-kb-tracker/rss.xml```
 
+
+ You will get the notification like below:
+ 
+![Sample Slack RSS feed notification](/slack.png)
+
+##########################
 
 
 2. Fork & Customize
