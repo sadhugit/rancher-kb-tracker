@@ -1,4 +1,4 @@
-🚀 **rancher-kb-tracker**
+🚀 **Git-kb-tracker**
 
 
 A lightweight, automated tracker that monitors Rancher Knowledge Base (KB) GitHub issues and generates a live RSS feed for updates.
