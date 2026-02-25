@@ -3,8 +3,8 @@ from feedgen.feed import FeedGenerator
 from datetime import datetime, timezone
 import os
 
-#REPO = "sadhugit/rancher-kb-tracker"
-REPO = "rancherlabs/support-kb"
+REPO = "sadhugit/rancher-kb-tracker"
+#REPO = "rancherlabs/support-kb"
 TOKEN = os.getenv("GITHUB_TOKEN")
 headers = {}
 if TOKEN:
