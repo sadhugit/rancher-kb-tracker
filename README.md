@@ -44,7 +44,7 @@ Deploy: The updated feed is committed back to the repository.
 - Copy the link to the generated rss.xml file and paste it into your RSS reader:
 
 ```https://sadhugit.github.io/rancher-kb-tracker/rss.xml```
-
+# ```/feed subscribe https://sadhugit.github.io/rancher-kb-tracker/rss.xml```
 
  You will get the notification like below:
  
